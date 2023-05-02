@@ -5,7 +5,7 @@ import './App.css';
 import { app } from './FirebaseConfig';
 import { getAuth, updateProfile, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 
-function Login() {
+function LogIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -120,4 +120,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LogIn;
