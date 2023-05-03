@@ -81,7 +81,7 @@ function LogIn() {
 
   return (
     <>
-      <div className="App">
+      <div className="App" style={{marginTop: "200px"}}>
         <img src={logo} alt="Logo" />
         <h2>Please Login</h2>
         <label className='labels'style={{right:"139px"}}>Email<span style={{color:"red"}}>*</span></label>

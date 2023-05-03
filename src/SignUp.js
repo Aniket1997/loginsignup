@@ -71,7 +71,7 @@ function SignUp() {
 
   return (
     <>
-      <div className="App">
+      <div className="App" style={{marginTop: "200px"}}>
         <img src={logo} alt="Logo" />
         <h2>Please SignUp</h2>
         <label className='labels'>Username<span style={{color:'red'}}>*</span></label>
