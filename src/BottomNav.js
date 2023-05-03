@@ -11,19 +11,32 @@ function BottomNav() {
       <style>
         {
           `
+          
           .bottom-nav {
-            position: absolute;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            bottom: 37px;
-            left: 469px;
-            width: 1088px;
-            height: 60px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 13px;
-          }
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  bottom: 37px;
+  width: 90%;
+  max-width: 1088px;
+  height: 60px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 13px;
+}
+@media screen and (min-width: 1024px) {
+  .bottom-nav {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .bottom-nav {
+    width: 80%;
+  }
+}
 
           .bottom-nav a {
   display: flex;
