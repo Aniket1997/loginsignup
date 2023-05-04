@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import { app } from './FirebaseConfig';
 import { getAuth, updateProfile, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 
 function LogIn() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -38,15 +40,15 @@ function LogIn() {
   const handleSignIn = () => {
     const auth = getAuth(app);
    
-    
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // User signed in successfully
         const user = userCredential.user;
-        console.log(user);
+        
         if (user.displayName) {
           setDisplayName(user.displayName);
         }
+        navigate('/home');
       })
       .catch((error) => {
         // Error signing in user
@@ -59,7 +61,7 @@ function LogIn() {
         setErrorMessage("Wrong Password"); 
         // set the error message state variable
       });
-    
+   
     setEmail('');
     setPassword('');
   };

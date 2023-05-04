@@ -13,7 +13,7 @@ function BottomNav() {
           `
           
           .bottom-nav {
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: space-around;
   align-items: center;

@@ -1,7 +1,14 @@
-import React from 'react'
-import BottomNav from './BottomNav'
+import React, { useState } from 'react'
+import BottomNav from './BottomNav';
+import { Link } from 'react-router-dom';
+import logo from './logo.svg';
 import { FaSearch, FaUserCircle, FaShoppingCart } from 'react-icons/fa';
+import { FcSearch } from "react-icons/fc";
+import { getAuth } from 'firebase/auth';
 const Home = () => {
+  const auth = getAuth();
+  const currentUser = auth.currentUser;
+  const [displayName,setDisplayName] = useState('')
     const handleSearch = (e) => {
         // handle search functionality here
       };
@@ -61,6 +68,57 @@ const Home = () => {
 {
   padding: 0px 135px 0px 131px;
 }
+.card-block {
+    font-size: 1em;
+    position: relative;
+    margin: 0;
+    padding: 1em;
+    border: none;
+    border-top: 1px solid rgba(34, 36, 38, .1);
+    box-shadow: none;
+     
+}
+.card {
+    font-size: 1em;
+    overflow: hidden;
+    padding: 5;
+    border: none;
+    border-radius: .28571429rem;
+    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+    margin-top:20px;
+}
+
+.carousel-indicators li {
+    border-radius: 12px;
+    width: 12px;
+    height: 12px;
+    background-color: #404040;
+}
+.carousel-indicators li {
+    border-radius: 12px;
+    width: 12px;
+    height: 12px;
+    background-color: #404040;
+}
+.carousel-indicators .active {
+    background-color: white;
+    max-width: 12px;
+    margin: 0 3px;
+    height: 12px;
+}
+.carousel-control-prev-icon {
+ background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+ lex-direction: column;
+}
+
+.btn {
+  margin-top: auto;
+}
            `
        }
    </style>
@@ -70,15 +128,17 @@ const Home = () => {
  
     <div class="d-flex">
       
-      <a class="navbar-brand me-2 mb-1 d-flex align-items-center" href="#">
+      <Link class="navbar-brand me-2 mb-1 d-flex align-items-center" to="/home">
         <img
-          src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+          src="https://www.nicepng.com/png/detail/261-2611378_shopping-cart-logo-blue.png"
           height="20"
           alt="MDB Logo"
           loading="lazy"
-          style={{marginTop: "2px"}}
+          style={{marginTop: "2px",
+          width: "85px",marginTop: "2px",height: "50px"
+          }}
         />
-      </a>
+      </Link>
 
   
       <form class="input-group w-auto my-auto d-none d-sm-flex">
@@ -89,9 +149,7 @@ const Home = () => {
           placeholder="Search"
           style={{minWidth: "125px"}}
         />
-        <span class="input-group-text border-0 d-none d-lg-flex"
-          ><i class="fas fa-search"></i
-        ></span>
+        <span class="input-group-text border-0 d-none d-lg-flex" style={{background: "none",cursor: "pointer"}}><FcSearch/></span>
       </form>
     </div>
     
@@ -104,17 +162,12 @@ const Home = () => {
         </a>
       </li>
 
-      <li class="nav-item me-3 me-lg-1">
-        <a class="nav-link" href="#">
-          <span><i class="fas fa-users fa-lg"></i></span>
-          <span class="badge rounded-pill badge-notification bg-danger">2</span>
-        </a>
-      </li>
+    
     </ul>
    
     <ul class="navbar-nav flex-row">
       <li class="nav-item me-3 me-lg-1">
-        <a class="nav-link d-sm-flex align-items-sm-center" href="#">
+        <a class="nav-link d-sm-flex align-items-sm-center dropdown-item" href="#">
           <img
             src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
             class="rounded-circle"
@@ -122,7 +175,7 @@ const Home = () => {
             alt="Black and White Portrait of a Man"
             loading="lazy"
           />
-          <strong class="d-none d-sm-block ms-1">John</strong>
+          <strong className="d-none d-sm-block ms-1">{currentUser.displayName}</strong>
         </a>
       </li>
       <li class="nav-item me-3 me-lg-1">
@@ -216,53 +269,94 @@ const Home = () => {
   </div>
 </nav>
 
-  
-<div class="row row-cols-md-1 row-cols-lg-2 g-3 px-md-4 px-lg-5">
-  <div class="col">
-    <div class="card mb-3">
-      <div class="row g-0">
-        <div class="col-md-4" style={{backgroundColor:"#eec0c6",backgroundImage: "linear-gradient(315deg, #eec0c6 0%, #7ee8fa 74%)"}}>
-        <div class="custom-shape-divider-bottom-1683139836">
-    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
-        <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
-        <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
-    </svg>
-</div>
+<div class="container py-3">
+ 
+ 
+  <div class="card">
+    <div class="row ">
+
+      <div class="col-md-7 px-3">
+        <div class="card-block px-6">
+          <h4 class="card-title">Horizontal Card with Carousel - Bootstrap 4 </h4>
+          <p class="card-text">
+            The Carousel code can be replaced with an img src, no problem. The added CSS brings shadow to the card and some adjustments to the prev/next buttons and the indicators is rounded now. As in Bootstrap 3
+          </p>
+          <p class="card-text">Made for usage, commonly searched for. Fork, like and use it. Just move the carousel div above the col containing the text for left alignment of images</p>
+          <br/>
+          <a href="#" class="mt-auto btn btn-primary  ">Read More</a>
         </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-            </p>
-            <p class="card-text">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </p>
+      </div>
+   
+      <div class="col-md-5">
+        <div id="CarouselTest" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#CarouselTest" data-slide-to="0" class="active"></li>
+            <li data-target="#CarouselTest" data-slide-to="1"></li>
+            <li data-target="#CarouselTest" data-slide-to="2"></li>
+
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="d-block" src="https://picsum.photos/450/300?image=1072" alt=""/>
+            </div>
+            <div class="carousel-item">
+              <img class="d-block" src="https://picsum.photos/450/300?image=855" alt=""/>
+            </div>
+            <div class="carousel-item">
+              <img class="d-block" src="https://picsum.photos/450/300?image=355" alt=""/>
+            </div>
+            <a class="carousel-control-prev" href="#CarouselTest" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+            <a class="carousel-control-next" href="#CarouselTest" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+ 
+
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="row">
+          <div class="col-sm-5">
+            <div class="card-block">
+              <h4 class="card-title">Small card</h4> 
+              <p>Wetgple text to build your own card.</p>
+              <p>Change around the content for awsomenes</p>
+              <a href="#" class="btn btn-primary btn-sm">Read More</a>
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <img class="d-block w-100" src="https://picsum.photos/150?image=380" alt=""/>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="col">
-    <div class="card mb-3">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img
-            src="https://mdbcdn.b-cdn.net/wp-content/uploads/2020/06/vertical.webp"
-            alt="Trendy Pants and Shoes"
-            class="img-fluid rounded-start"
-          />
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-            </p>
-            <p class="card-text">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </p>
+
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="row">
+          <div class="col-sm-5">
+            <img class="d-block w-100" src="https://picsum.photos/150?image=641" alt=""/>
+          </div>
+          <div class="col-sm-7">
+            <div class="card-block">
+              <h4 class="card-title">Small card</h4> 
+              <p>Copy paste the HTML and CSS.</p>
+              <p>Change around the content for awsomenes</p>
+              <br/>
+              <a href="#" class="btn btn-primary btn-sm float-right">Read More</a>
+            </div>
           </div>
         </div>
       </div>
