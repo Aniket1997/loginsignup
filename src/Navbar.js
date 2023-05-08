@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { FcSearch } from "react-icons/fc";
 import { BsHandbag } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
@@ -33,7 +32,7 @@ const Navbar = () => {
       
       <a className="navbar-brand mt-2 mt-lg-0" href="#">
         <img
-          src="https://cdn.dribbble.com/users/3267379/screenshots/6098927/e_shop.jpg"
+          src={process.env.PUBLIC_URL + '/shopping.png'}
          style={{
           width: "61px",height: "61px",borderRadius: "10px"
          }}
@@ -42,7 +41,7 @@ const Navbar = () => {
         />
       </a>
     
-      <ul className="navbar-nav me-auto mb-2 mb-lg-0" style={{padding: "11px", background: "#ebebeb", borderRadius: "11px"}}>
+      <ul className="navbar-nav me-auto mb-2 mb-lg-0" style={{ background: "#ebebeb", borderRadius: "11px"}}>
         <li className="nav-item">
           <a className="nav-link" href="#" style={{fontSize: "21px",fontWeight: "400",color: "black"}} >Categories</a>
         </li>
