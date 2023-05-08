@@ -5,21 +5,22 @@ import logo from './logo.svg';
 import { FaSearch, FaUserCircle, FaShoppingCart } from 'react-icons/fa';
 import { FcSearch } from "react-icons/fc";
 import { getAuth } from 'firebase/auth';
+import Grid from '@mui/material/Unstable_Grid2';
+import Navbar from './Navbar'
 const Home = () => {
   const auth = getAuth();
   const currentUser = auth.currentUser;
-  const [displayName,setDisplayName] = useState('')
-    const handleSearch = (e) => {
-        // handle search functionality here
-      };
-    
-      const handleProfileClick = (e) => {
-        // handle profile click functionality here
-      };
-    
-      const handleCartClick = (e) => {
-        // handle cart click functionality here
-      };
+  
+  const date = new Date();
+  const hours = date.getHours();
+  let greeting ;
+  if (hours < 12) {
+    greeting = 'Good morning';
+  } else if (hours < 18) {
+    greeting = 'Good afternoon';
+  } else {
+    greeting = 'Good evening';
+  }
   return (
     <>
    <style>
@@ -123,151 +124,22 @@ const Home = () => {
        }
    </style>
     
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid justify-content-between appbar" >
- 
-    <div class="d-flex">
-      
-      <Link class="navbar-brand me-2 mb-1 d-flex align-items-center" to="/home">
-        <img
-          src="https://www.nicepng.com/png/detail/261-2611378_shopping-cart-logo-blue.png"
-          height="20"
-          alt="MDB Logo"
-          loading="lazy"
-          style={{marginTop: "2px",
-          width: "85px",marginTop: "2px",height: "50px"
-          }}
-        />
-      </Link>
+<Navbar/>
+<Grid container>
+<Grid item xs={6} style={{
+    boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px", 
+    marginRight: "305px", 
+    display: "flex",
+    justifyContent: "start",
+    marginLeft: "305px",
+    padding: "31px",
+    borderRadius: "10px"}}>
+<h1>Hello John , {greeting}</h1>
+</Grid>
+<Grid item xs={6}>
 
-  
-      <form class="input-group w-auto my-auto d-none d-sm-flex">
-        <input
-          autocomplete="off"
-          type="search"
-          class="form-control rounded"
-          placeholder="Search"
-          style={{minWidth: "125px"}}
-        />
-        <span class="input-group-text border-0 d-none d-lg-flex" style={{background: "none",cursor: "pointer"}}><FcSearch/></span>
-      </form>
-    </div>
-    
-    <ul class="navbar-nav flex-row d-none d-md-flex">
-      
-
-      <li class="nav-item me-3 me-lg-1">
-        <a class="nav-link" href="#">
-          <span><i class="fas fa-shopping-bag fa-lg"></i></span>
-        </a>
-      </li>
-
-    
-    </ul>
-   
-    <ul class="navbar-nav flex-row">
-      <li class="nav-item me-3 me-lg-1">
-        <a class="nav-link d-sm-flex align-items-sm-center dropdown-item" href="#">
-          <img
-            src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
-            class="rounded-circle"
-            height="22"
-            alt="Black and White Portrait of a Man"
-            loading="lazy"
-          />
-          <strong className="d-none d-sm-block ms-1">{currentUser.displayName}</strong>
-        </a>
-      </li>
-      <li class="nav-item me-3 me-lg-1">
-        <a class="nav-link" href="#">
-          <span><i class="fas fa-plus-circle fa-lg"></i></span>
-        </a>
-      </li>
-      <li class="nav-item dropdown me-3 me-lg-1">
-        <a
-          class="nav-link dropdown-toggle hidden-arrow"
-          href="#"
-          id="navbarDropdownMenuLink"
-          role="button"
-          data-mdb-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <i class="fas fa-comments fa-lg"></i>
-
-          <span class="badge rounded-pill badge-notification bg-danger">6</span>
-        </a>
-        <ul
-          class="dropdown-menu dropdown-menu-end"
-          aria-labelledby="navbarDropdownMenuLink"
-        >
-          <li>
-            <a class="dropdown-item" href="#">Some news</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Another news</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </li>
-        </ul>
-      </li>
-      <li class="nav-item dropdown me-3 me-lg-1">
-        <a
-          class="nav-link dropdown-toggle hidden-arrow"
-          href="#"
-          id="navbarDropdownMenuLink"
-          role="button"
-          data-mdb-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <i class="fas fa-bell fa-lg"></i>
-          <span class="badge rounded-pill badge-notification bg-danger">12</span>
-        </a>
-        <ul
-          class="dropdown-menu dropdown-menu-end"
-          aria-labelledby="navbarDropdownMenuLink"
-        >
-          <li>
-            <a class="dropdown-item" href="#">Some news</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Another news</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </li>
-        </ul>
-      </li>
-      <li class="nav-item dropdown me-3 me-lg-1">
-        <a
-          class="nav-link dropdown-toggle hidden-arrow"
-          href="#"
-          id="navbarDropdownMenuLink"
-          role="button"
-          data-mdb-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <i class="fas fa-chevron-circle-down fa-lg"></i>
-        </a>
-        <ul
-          class="dropdown-menu dropdown-menu-end"
-          aria-labelledby="navbarDropdownMenuLink"
-        >
-          <li>
-            <a class="dropdown-item" href="#">Some news</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Another news</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-    
-  </div>
-</nav>
+</Grid>
+</Grid>
 
 <div class="container py-3">
  

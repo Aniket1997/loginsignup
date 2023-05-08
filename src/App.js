@@ -4,6 +4,7 @@ import LogIn from './Login';
 import SignUp from './SignUp';
 import Home from './Home';
 import Profile from './Profile';
+import WrappedLoginSignUp from './Navbar';
 function App() {
   return (
     <Router>
@@ -13,7 +14,7 @@ function App() {
         <Route path="/login" element={<LogIn/>}/>
         <Route path="/home" element={<Home/>}/>
         <Route path="/profile" element={<Profile/>}/>
-          
+        <Route path='/navbar' element={<WrappedLoginSignUp/>}/>
       </Routes>
     </Router>
 
