@@ -1,11 +1,26 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { FcSearch } from "react-icons/fc";
 import { BsHandbag } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import { VscAccount } from "react-icons/vsc";
-
+import axios from 'axios'
 const Navbar = () => {
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    // Fetch the category data from the Firebase API endpoint
+    fetch('https://shoppingapp-ce43b-default-rtdb.firebaseio.com/categories.json')
+      .then(response => response.json())
+      .then(data => {
+        // Convert the data object to an array of categories
+        const categoriesArray = Object.values(data).map(item => item.name);
+        console.log(categoriesArray);
+        setCategories(categoriesArray);
+      })
+      .catch(error => console.error(error));
+  }, []);
+
+  
   
   return (
    
@@ -34,7 +49,7 @@ const Navbar = () => {
         <img
           src={process.env.PUBLIC_URL + '/shopping.png'}
          style={{
-          width: "61px",height: "61px",borderRadius: "10px"
+          width: "101px",height: "61px",borderRadius: "10px"
          }}
           alt="MDB Logo"
           loading="lazy"
@@ -42,9 +57,26 @@ const Navbar = () => {
       </a>
     
       <ul className="navbar-nav me-auto mb-2 mb-lg-0" style={{ background: "#ebebeb", borderRadius: "11px"}}>
-        <li className="nav-item">
-          <a className="nav-link" href="#" style={{fontSize: "21px",fontWeight: "400",color: "black"}} >Categories</a>
-        </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdownMenuLink"
+          role="button"
+          data-mdb-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Categories
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        {categories.map((category, index) => (
+          <a className="dropdown-item" href="#" key={index}>{category}</a>
+        ))}
+          
+         
+        </ul>
+      </li>
+
         <li className="nav-item">
           <a className="nav-link" href="#" style={{fontSize: "21px",fontWeight: "400",color: "black"}}>Brands</a>
         </li>

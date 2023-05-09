@@ -5,6 +5,7 @@ import SignUp from './SignUp';
 import Home from './Home';
 import Profile from './Profile';
 import WrappedLoginSignUp from './Navbar';
+import AddCategories from './Components/Admin/AppBar/AddCategories';
 function App() {
   return (
     <Router>
@@ -15,6 +16,7 @@ function App() {
         <Route path="/home" element={<Home/>}/>
         <Route path="/profile" element={<Profile/>}/>
         <Route path='/navbar' element={<WrappedLoginSignUp/>}/>
+        <Route path='/addCategory' element={<AddCategories/>}/>
       </Routes>
     </Router>
 
