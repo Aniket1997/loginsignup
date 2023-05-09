@@ -4,9 +4,10 @@ import { BsHandbag } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import { VscAccount } from "react-icons/vsc";
-import axios from 'axios'
+
 const Navbar = () => {
   const [categories, setCategories] = useState([]);
+  const [brands,setBrands] = useState([]);
   useEffect(() => {
     // Fetch the category data from the Firebase API endpoint
     fetch('https://shoppingapp-ce43b-default-rtdb.firebaseio.com/categories.json')
@@ -19,7 +20,18 @@ const Navbar = () => {
       })
       .catch(error => console.error(error));
   }, []);
-
+  useEffect(() => {
+    // Fetch the category data from the Firebase API endpoint
+    fetch('https://shoppingapp-ce43b-default-rtdb.firebaseio.com/brands.json')
+      .then(response => response.json())
+      .then(data => {
+        // Convert the data object to an array of categories
+        const categoriesArray = Object.values(data).map(item => item.name);
+        console.log(categoriesArray);
+        setBrands(categoriesArray);
+      })
+      .catch(error => console.error(error));
+  }, []);
   
   
   return (
@@ -77,9 +89,25 @@ const Navbar = () => {
         </ul>
       </li>
 
-        <li className="nav-item">
-          <a className="nav-link" href="#" style={{fontSize: "21px",fontWeight: "400",color: "black"}}>Brands</a>
-        </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdownMenuLink"
+          role="button"
+          data-mdb-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Brands
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        {brands.map((category, index) => (
+          <a className="dropdown-item" href="#" key={index}>{category}</a>
+        ))}
+          
+         
+        </ul>
+      </li>
         <li className="nav-item">
           <a className="nav-link" href="#" style={{fontSize: "21px",fontWeight: "400",color: "black"}}>Contact us </a>
         </li>

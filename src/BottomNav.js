@@ -1,11 +1,19 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { BiHomeAlt } from "react-icons/bi";
-import { TbDiamond, TbLockAccess } from "react-icons/tb";
-import { CiShop } from "react-icons/ci";
-import { TfiPieChart, TfiSettings } from "react-icons/tfi";
+import React,{useState} from 'react';
+
+import { BsClipboard } from "react-icons/bs";
+import { TbArrowsSort } from "react-icons/tb";
+import { MdCategory,MdNotificationsActive } from "react-icons/md";
+import {GoSettings} from "react-icons/go";
+import { IoMdSettings } from "react-icons/io";
+import Drawer from '@mui/material/Drawer';
+import Grid from '@mui/material/Grid'
 
 function BottomNav() {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const handleDrawerToggle = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
   return (
     <>
       <style>
@@ -66,10 +74,31 @@ function BottomNav() {
         `
         }
       </style>
-      <nav className="bottom-nav">
-        <NavLink exact to="/home" activeClassName="active">
-          <BiHomeAlt />
-          <span>Home</span>
+      <Grid container style={{border:"1px solid black",borderRadius:"10px", position: "fixed", bottom: "20px"}}>
+       <Grid item xs={2}>
+       <GoSettings />
+       </Grid>
+       <Grid item xs={2}>
+       <TbArrowsSort />
+       </Grid>
+       <Grid item xs={2}>
+       <MdCategory />
+       </Grid>
+       <Grid item xs={2}>
+       <MdNotificationsActive />
+       </Grid>
+       <Grid item xs={2}>
+       <BsClipboard />
+       </Grid>
+       <Grid item xs={2}>
+       <IoMdSettings />
+       </Grid>
+
+      </Grid>
+      {/* <nav className="bottom-nav">
+        <NavLink activeClassName="active" >
+          <BsFilter onClick={handleDrawerToggle}/>
+          <span>Filter</span>
         </NavLink>
         <NavLink exact to="/profile" activeClassName="active">
           <TbDiamond />
@@ -91,7 +120,10 @@ function BottomNav() {
           <TfiSettings />
           <span>Settings</span>
         </NavLink>
-      </nav>
+      </nav> */}
+      <Drawer anchor="right" open={isDrawerOpen} onClose={handleDrawerToggle}>
+        <h1>Hello</h1>
+      </Drawer>
     </>
   );
 }
