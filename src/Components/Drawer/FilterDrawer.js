@@ -1,6 +1,7 @@
 import React from 'react'
 import { Box, Divider, Grid } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
+import FilterBox from './FilterBox';
 
 const FilterDrawer = () => {
   const [formats, setFormats] = React.useState(() => ['bold', 'italic']);
@@ -66,8 +67,26 @@ const FilterDrawer = () => {
       <div>
         <p style={{ margin: '5px', fontWeight: 'bolder' }}>Filter</p>
         <Divider />
-        <Grid container>
-          {/* <p style={{margin: '5px'}}>Customer Ratings</p> */}
+        <Box>
+          <p style={{ margin: '5px', fontWeight: 'bold' }}> Colour</p>
+          <div style={{ display: 'flex' }}>
+            <div style={{ margin: '0px 10px', borderRadius: '50px', backgroundColor: 'red', height: '25px', width: '25px' }}></div>
+            <div style={{ margin: '0px 10px', borderRadius: '50px', backgroundColor: 'blue', height: '25px', width: '25px' }}></div>
+            <div style={{ margin: '0px 10px', borderRadius: '50px', backgroundColor: 'yellow', height: '25px', width: '25px' }}></div>
+            <div style={{ margin: '0px 10px', borderRadius: '50px', backgroundColor: 'black', height: '25px', width: '25px' }}></div>
+
+          </div>
+        </Box>
+
+        <FilterBox name={"Price"} filter={['500-1000', '1000-2000', '2000-3000', '3000-4000', '4000-5000']}/>
+        <FilterBox name={"Ideal for"} filter={['Men', 'Women', 'Boy', 'Girl']}/>
+        <FilterBox name={"Ideal for"} filter={['Boat Shoes', 'Canvas shoes', 'Dancing Shoes', 'Outdoors', 'Sneakers', 'Part Wears']}/>
+        <FilterBox name={"Brand"} filter={['FILA', 'DUCATI', 'PUMA', 'WRONG', 'PROVOGUE', 'BRUTON']}/>
+        <FilterBox name={"Size"} filter={['8', '7', '6', '5', '4', '3']}/>
+        <FilterBox name={"Discount"} filter={['30% Or More', '40% or more', '50% or more', '60% or more', '70% or more', '3']}/>
+
+        {/* <Grid container>
+          
           <Grid item xs={12}>
 
             <p style={{ margin: '5px', fontWeight: 'bold' }}>Customer Ratings</p>
@@ -85,9 +104,9 @@ const FilterDrawer = () => {
               <label for="cb-47">5 <StarIcon /> and above</label>
             </div>
           </Grid>
-        </Grid>
+        </Grid> */}
 
-        <Box>
+        {/* <Box>
           <p style={{ margin: '5px', fontWeight: 'bold' }}> PRICE</p>
           <Divider />
           <div style={{ display: 'flex', flexDirection: 'column', margin: '5px' }}>
@@ -278,7 +297,7 @@ const FilterDrawer = () => {
               <label for="cb-47">Include Out of Stock</label>
             </div>
           </div>
-        </Box>
+        </Box> */}
       </div>
 
     </>
